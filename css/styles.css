@@ -213,3 +213,20 @@ _:-ms-input-placeholder, :root .demo-graph {
       -ms-flex-align: center;
           align-items: center;
 }
+
+h3.dashboard-header {
+    margin: 0;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.m-top--small {
+    margin-top: 12px;
+}
+
+.telemetry-card.mdl-card {
+    float: left;
+    width: 250px;
+}
