@@ -1,0 +1,23 @@
+{
+  "name": "groot-function",
+  "version": "0.0.1",
+  "description": "Groot Functions for the Azure Functions service.",
+  "main": "src/index.js",
+  "author": "William Fleming",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^#.#.#",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^#.#.#",
+    "eslint-plugin-jsx-a11y": "^#.#.#",
+    "eslint-plugin-react": "^#.#.#",
+    "mocha": "^4.0.1"
+  },
+  "dependencies": {
+    "chai": "^4.1.2"
+  },
+  "scripts": {
+    "test": "mocha",
+    "lint": "eslint src"
+  }
+}
