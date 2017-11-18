@@ -109,48 +109,56 @@
           <div class="mdl-cell mdl-cell--12-col mdl-grid">
               <h3 class="dashboard-header">Soil Overview</h3>
           </div>
-          <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
-            <div class="mdl-card telemetry-card mdl-shadow--2dp">
-              <div class="mdl-card__title">
-                <h2 class="mdl-card__title-text">Moisture</h2>
-              </div>
-              <div class="mdl-card__supporting-text">
-                The most recent moisture rating across devices installed on your land.
-                <div class="m-top--small center-text typo-styles__demo mdl-typography--display-1">
-                  Wet
+          <div class="mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
+            <div class="mdl-grid">
+              <div class="mdl-card mdl-cell mdl-cell--6-col telemetry-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                  <h2 class="mdl-card__title-text">Moisture</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                  The most recent moisture rating across devices installed on your land.
+                </div>
+                <div class="mdl-card__menu">
+                  <div class="typo-styles__demo mdl-typography--headline">
+                    Wet
+                  </div>
                 </div>
               </div>
-              <div class="mdl-card__actions mdl-card--border">
-
+              <div class="mdl-card mdl-cell mdl-cell--6-col telemetry-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                  <h2 class="mdl-card__title-text">Temperature</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                  Current soil temperature measured in Fahrenheit averaged across your devices.
+                </div>
+                <div class="mdl-card__menu">
+                  <div class="typo-styles__demo mdl-typography--headline">
+                    65° F
+                  </div>
+                </div>
               </div>
-              <div class="mdl-card__menu">
-                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                  <i class="material-icons">help</i>
-                </button>
-              </div>
+              <table class="mdl-data-table mdl-cell mdl-cell--12-col
+                mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                <thead>
+                <tr>
+                  <th class="mdl-data-table__cell--non-numeric">Device ID</th>
+                  <th>Moisture</th>
+                  <th>Temperature</th>
+                  <th>pH</th>
+                  <th>Salinity</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">Nimble hamster</td>
+                  <td>Wet</td>
+                  <td>65° F</td>
+                  <td>7 pH (Neutral)</td>
+                  <td>7 g/mL</td>
+                </tr>
+                </tbody>
+              </table>
             </div>
-            
-            <br />
-            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-              <thead>
-              <tr>
-                <th class="mdl-data-table__cell--non-numeric">Device ID</th>
-                <th>Moisture</th>
-                <th>Temperature</th>
-                <th>pH</th>
-                <th>Salinity</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td class="mdl-data-table__cell--non-numeric">Nimble hamster</td>
-                <td>Wet</td>
-                <td>65° F</td>
-                <td>7 pH (Neutral)</td>
-                <td>7 g/mL</td>
-              </tr>
-              </tbody>
-            </table>
           </div>
           <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
             <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
