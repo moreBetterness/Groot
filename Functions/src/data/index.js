@@ -1,10 +1,10 @@
 const azure = require('azure-storage');
 const uuid = require('uuid');
 const moment = require('moment');
+const { connectionString } = require('../../env');
 const { response } = require('../common');
-
+// Generator for entities. See azure-storage docs.
 const entGen = azure.TableUtilities.entityGenerator;
-
 /**
  * The Data function is responsible for receiving data from the
  * Particle WebHook and storing it in the appropriate SQL Server Table.
@@ -16,13 +16,16 @@ const entGen = azure.TableUtilities.entityGenerator;
 module.exports = function data(context, req) {
   context.log(req.body);
   try {
-    const tableService = azure.createTableService('DefaultEndpointsProtocol=https;AccountName=grootsto;AccountKey=YoJkh87E2Q5G1tPhEf2k0FzJPmjp3GpvgZ6Sl7w8xhn9r94XtF8gfDRmpLHT2bdYGRfJcelZKAr1cdivgZ4mUg==;EndpointSuffix=core.windows.net');
+    // Get a reference to the table.
+    const tableService = azure.createTableService(connectionString);
+    // Generate the entity/document to store.
     const task = {
       PartitionKey: entGen.String('0'),
       RowKey: entGen.String(uuid()),
       Timestamp: entGen.DateTime(moment.now()),
       Message: entGen.String(JSON.stringify(req.body)),
     };
+    // Insert the entity/document.
     tableService.insertEntity('sensordata', task, (error) => {
       if (!error) {
         context.res = response(false, 200, 'Stored');
