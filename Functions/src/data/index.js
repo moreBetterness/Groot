@@ -1,16 +1,9 @@
-const { Connection } = require('tedious');
+const azure = require('azure-storage');
+const uuid = require('uuid');
+const moment = require('moment');
 const { response } = require('../common');
 
-// Configuration for the database.
-const config = {
-  userName: 'grootadmin',
-  password: 'Groot1iot',
-  server: 'grootserver.database.windows.net',
-  options: {
-    database: 'grootdb',
-    encrypt: true,
-  },
-};
+const entGen = azure.TableUtilities.entityGenerator;
 
 /**
  * The Data function is responsible for receiving data from the
@@ -22,21 +15,26 @@ const config = {
  */
 module.exports = function data(context, req) {
   context.log(req.body);
-
-  // Create the connection to the database.
-  const connection = new Connection(config);
-
-  // Listen for the connection to be established.
-  connection.on('connect', (err) => {
-    // Failed to connect.
-    if (err) {
-      context.res = response(false, 500, 'Failed to Connect');
-      context.done();
-    // Connected
-    } else {
-      context.res = response(true, 200, 'Successfull Connected.');
-      context.done();
-    }
-  });
+  try {
+    const tableService = azure.createTableService('DefaultEndpointsProtocol=https;AccountName=grootsto;AccountKey=YoJkh87E2Q5G1tPhEf2k0FzJPmjp3GpvgZ6Sl7w8xhn9r94XtF8gfDRmpLHT2bdYGRfJcelZKAr1cdivgZ4mUg==;EndpointSuffix=core.windows.net');
+    const task = {
+      PartitionKey: entGen.String('0'),
+      RowKey: entGen.String(uuid()),
+      Timestamp: entGen.DateTime(moment.now()),
+      Message: entGen.String(JSON.stringify(req.body)),
+    };
+    tableService.insertEntity('sensordata', task, (error) => {
+      if (!error) {
+        context.res = response(false, 200, 'Stored');
+        context.done();
+      } else {
+        context.res = response(false, 500, 'Failed to Store');
+        context.done();
+      }
+    });
+  } catch (err) {
+    context.res = response(false, 500, 'Failed to Connect');
+    context.done();
+  }
 };
 
