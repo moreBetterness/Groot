@@ -225,3 +225,19 @@ h3.dashboard-header {
 .telemetry-card.mdl-card {
     min-height: 150px;
 }
+
+@media only screen and (max-width: 500px) {
+    table.responsive-table {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    div.mobile-table {
+        display: none;
+    }
+}
+
+table.sensor-table {
+    width: 100%;
+}
