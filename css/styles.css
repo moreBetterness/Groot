@@ -124,18 +124,6 @@ html, body {
 .demo-chart:nth-child(4) {
   color: #EF3C79;
 }
-.demo-graphs {
-  padding: 16px 32px;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-align-items: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-}
 /* TODO: Find a proper solution to have the graphs
  * not float around outside their container in IE10/11.
  * Using a browserhacks.com solution for now.
@@ -226,7 +214,14 @@ h3.dashboard-header {
     margin-top: 12px;
 }
 
+.m-left--small {
+    margin-left: 12px;
+}
+
+.m-left--medium {
+    margin-left: 18px;
+}
+
 .telemetry-card.mdl-card {
-    float: left;
-    width: 250px;
+    min-height: 150px;
 }
