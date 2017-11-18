@@ -17,6 +17,11 @@ npm install
 ```
 2. Upload - TODO
 
+#### Key Libraries
+* Tedious - SQL Server Queries
+  * https://www.npmjs.com/package/tedious
+  * https://docs.microsoft.com/en-us/azure/sql-database/sql-database-connect-query-nodejs
+
 
 #### Scripts
 * Test - Execute all tests within the test directory.

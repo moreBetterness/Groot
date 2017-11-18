@@ -11,13 +11,18 @@
     "eslint-plugin-import": "^#.#.#",
     "eslint-plugin-jsx-a11y": "^#.#.#",
     "eslint-plugin-react": "^#.#.#",
-    "mocha": "^4.0.1"
+    "mocha": "^4.0.1",
+    "webpack": "^3.8.1"
   },
   "dependencies": {
-    "chai": "^4.1.2"
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "tedious": "^2.1.1"
   },
   "scripts": {
-    "test": "mocha",
-    "lint": "eslint src"
+    "test": "mocha test/**/*.js",
+    "lint": "eslint src",
+    "build": "webpack",
+    "release": "npm run lint && npm run build"
   }
 }
