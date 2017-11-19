@@ -1,5 +1,7 @@
 <html>
     <body>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.2/noty.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.2/noty.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
         <script>
             var Socket = (function(){
@@ -9,6 +11,12 @@
                 });
                 socket.on('data', function(data){
                     console.log(data);
+                    new Noty({
+                        text: 'Groot Moisture: ' + data.event,
+                        theme: 'metroui',
+                        type: 'warning',
+                        timeout: 1000,
+                    }).show();
                 });
                 socket.on('disconnect', function(){
                     console.log('Disconnected.');
