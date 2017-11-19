@@ -5,9 +5,9 @@ var Socket = (function(){
 	});
 	socket.on('data', function(data){
 		console.log(data);
-		$('#moistureCardValue').val(data.event);
-		$('#moistureTableValue').val(data.event);
-		$('#moistureMobileTableValue').val(data.event);
+		$('#moistureCardValue').text(data.event);
+		$('#moistureTableValue').text(data.event);
+		$('#moistureMobileTableValue').text(data.event);
 	});
 	socket.on('disconnect', function(){
 		console.log('Disconnected.');
