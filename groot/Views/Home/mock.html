@@ -117,7 +117,7 @@
 						</div>
 						<div class="mdl-card__menu">
 							<div class="typo-styles__demo mdl-typography--headline">
-								Wet
+								<span id="moistureCardValue">Wet</span>
 							</div>
 						</div>
 					</div>
@@ -174,7 +174,7 @@
 						<tbody>
 						<tr>
 							<td class="mdl-data-table__cell--non-numeric">Nimble hamster</td>
-							<td>Wet</td>
+							<td><span id="moistureTableValue">Wet</span></td>
 							<td>65° F</td>
 							<td>7</td>
 							<td>7 g/mL</td>
@@ -196,7 +196,7 @@
 								<tbody>
 								<tr>
 									<td>Moisture</td>
-									<td>Wet</td>
+									<td><span id="moistureMobileTableValue">Wet</span></td>
 								</tr>
 								<tr>
 									<td>pH</td>
@@ -254,5 +254,7 @@
 <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="../../Scripts/plantRecommendations.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+<script src="../../Scripts/realtime.js"></script>
 </body>
 </html>
