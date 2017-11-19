@@ -20,6 +20,7 @@
     "chai-http": "^3.0.0",
     "moment": "^2.19.2",
     "tedious": "^2.1.1",
+    "twilio": "^3.10.0",
     "uuid": "^3.1.0"
   },
   "scripts": {

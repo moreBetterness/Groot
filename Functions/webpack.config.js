@@ -5,6 +5,7 @@ const config = {
   // Each function will have its own bundle, similar to a multi-page application.
   entry: {
     data: path.join(__dirname, 'src/data/index.js'),
+    alert: path.join(__dirname, 'src/alert/index.js'),
   },
   output: {
     filename: '[name]/index.js',
