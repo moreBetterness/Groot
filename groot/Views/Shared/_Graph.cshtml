@@ -1,0 +1,69 @@
+﻿
+@Scripts.Render("~/bundles/Chart")
+
+@{
+    int[] result = ViewBag.Wetness;
+    string test = "";
+
+    for (int i = 0; i <= result.Length - 1; ++i)
+    {
+        if (i == 0)
+        {
+            test = test + result[i].ToString();
+        }
+        else
+        {
+            test = test + "," + result[i].ToString();
+        }
+    }
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Moisture History</h3>
+    </div>
+    <div class="panel-body">
+        <canvas id="myChartPh" width="1000" height="150"></canvas>
+    </div>
+</div>
+
+<script>
+    var result = "@test";
+    debugger;
+    var resultArray = result.split(',');
+    /////////////////////////////////////////////////////////////////////////
+    //PH
+    //Get a reference to the chart
+    var ctx1 = document.getElementById("myChartPh").getContext("2d");
+    //Define the data structure for the chart
+    var myChartPh = new Chart(ctx1, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: "Tank 1A",
+                data: resultArray,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            responsive: true,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>

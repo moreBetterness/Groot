@@ -94,7 +94,7 @@
                 </div>
             </header>
             <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Dashboard</a>
+                <a class="mdl-navigation__link" href="@Url.Action("Graph", "Home")"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Dashboard</a>
                 <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>Device Setup</a>
                 <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>User Profile</a>
                 <div class="mdl-layout-spacer"></div>
@@ -165,24 +165,24 @@
                         <table class="responsive-table mdl-data-table mdl-cell mdl-cell--12-col
                 mdl-js-data-table mdl-shadow--2dp">
                             <thead>
-                                <tr>
-                                    <th class="mdl-data-table__cell--non-numeric">Device ID</th>
-                                    <th>Moisture</th>
-                                    <th>Temperature</th>
-                                    <th>pH</th>
-                                    <th>Salinity</th>
-                                </tr>
+                            <tr>
+                                <th class="mdl-data-table__cell--non-numeric">Device ID</th>
+                                <th>Moisture</th>
+                                <th>Temperature</th>
+                                <th>pH</th>
+                                <th>Salinity</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="mdl-data-table__cell--non-numeric">Nimble hamster</td>
-                                    <td>
-                                        @Model.eventName
-                                    </td>
-                                    <td>65° F</td>
-                                    <td>7</td>
-                                    <td>7 g/mL</td>
-                                </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">Nimble hamster</td>
+                                <td>
+                                    @Model.eventName
+                                </td>
+                                <td>65° F</td>
+                                <td>7</td>
+                                <td>7 g/mL</td>
+                            </tr>
                             </tbody>
                         </table>
                         <div class="mobile-table mdl-card mdl-cell mdl-cell--12-col telemetry-card mdl-shadow--2dp">
@@ -192,28 +192,28 @@
                             <div class="mdl-card__supporting-text">
                                 <table class="sensor-table mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                                     <thead>
-                                        <tr>
-                                            <th>Sensor</th>
-                                            <th>Value</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Sensor</th>
+                                        <th>Value</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Moisture</td>
-                                            <td>@Model.eventName</td>
-                                        </tr>
-                                        <tr>
-                                            <td>pH</td>
-                                            <td>7 pH</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Salinity</td>
-                                            <td>7 g/mL</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Temperature</td>
-                                            <td>65° F</td>
-                                        </tr>
+                                    <tr>
+                                        <td>Moisture</td>
+                                        <td>@Model.eventName</td>
+                                    </tr>
+                                    <tr>
+                                        <td>pH</td>
+                                        <td>7 pH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Salinity</td>
+                                        <td>7 g/mL</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Temperature</td>
+                                        <td>65° F</td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -249,6 +249,12 @@
                             <i class="material-icons">location_on</i>
                         </div>
                     </div>
+                </div>
+            </div>
+            <!--This panel represents real time data from sensors-->
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    @Html.Partial("_Graph")
                 </div>
             </div>
         </main>
