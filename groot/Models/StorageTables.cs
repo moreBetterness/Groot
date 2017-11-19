@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Helpers;
 using Microsoft.WindowsAzure.Storage.Table;
 using System.Configuration;
+using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using System.Web.Script.Serialization;
 using System.Web.Services.Description;
@@ -14,7 +15,7 @@ using Microsoft.WindowsAzure.Storage;
 
 namespace groot.Models
 {
-    public class Message
+    public class Message:IComparable<Message>
     {
         public String @event { get; set; }
         public String data { get; set; }
@@ -22,6 +23,25 @@ namespace groot.Models
         public String coreid { get; set; }
         public String device_id { get; set; }
         public String eventName { get; set; }
+
+        public int CompareTo(Message other)
+        {
+            DateTime tpub = Convert.ToDateTime(this.published_at);
+            DateTime opub = Convert.ToDateTime(other.published_at);
+
+            if (tpub < opub)
+            {
+                return 1;
+            }
+            else if (tpub == opub)
+            {
+                return 0;
+            }
+            else
+            {
+                return -1;
+            }
+        }
     }
     public class StorageTables : TableEntity
     {
@@ -40,6 +60,7 @@ namespace groot.Models
 
         }
         public string Message { get; set; }
+        public DateTime OurDateTime { get; set; }
     }
     public static class StorageTableDB
     {
@@ -65,7 +86,7 @@ namespace groot.Models
             mess.eventName = mess.@event;
             return mess;
         }
-        public static List<StorageTables> GetAllData()
+        public static List<Message> GetAllData()
         {
             string connStr = ConfigurationManager.ConnectionStrings["StorageConnectionString"].ConnectionString;
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connStr);
@@ -76,16 +97,41 @@ namespace groot.Models
             List<StorageTables> output = new List<StorageTables>();
 
             TableQuery<StorageTables> query = new TableQuery<StorageTables>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "0"));
+            List<Message> sortMessage = new List<Message>();
+
             foreach (StorageTables entity in table.ExecuteQuery(query))
             {
-                output.Add(new StorageTables()
+                try
                 {
-                    Message = Convert.ToString(entity.Message),
-                });
-                //Console.WriteLine(entity.PartitionKey, entity.RowKey, entity.Message);
+                    Message mess = new JavaScriptSerializer().Deserialize<Message>(entity.Message);
+
+                    if (mess.@event == "HIGH")
+                    {
+                        mess.@event = "3";
+                    }
+                    else if (mess.@event == "MEDIUM")
+                    {
+                        mess.@event = "2";
+                    }
+                    else
+                    {
+                        mess.@event = "1";
+                    }
+                    sortMessage.Add(mess);
+                    //output.Add(new StorageTables()
+                    //{
+                    //    Message = mess.@event,
+                    //    Timestamp = entity.Timestamp
+                    //});
+                    //Console.WriteLine(entity.PartitionKey, entity.RowKey, entity.Message);
+                    sortMessage.Sort();
+                }
+                catch (Exception ex) { }
+
             }
 
-            return output;
+
+            return sortMessage;
 
             //TableOperation retOp = TableOperation.Retrieve<StorageTables>("0", "0013e96a-320e-4224-86c9-9e9f630e0cd9");
             //TableResult tr = table.Execute(retOp);
