@@ -1,0 +1,19 @@
+<html>
+    <body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+        <script>
+            var Socket = (function(){
+                var socket = io.connect('http://18.221.121.95:3000')
+                socket.on('connect', function(){
+                    console.log('Connected.');
+                });
+                socket.on('data', function(data){
+                    console.log(data);
+                });
+                socket.on('disconnect', function(){
+                    console.log('Disconnected.');
+                });
+            }())
+        </script>
+    </body>
+</html>
