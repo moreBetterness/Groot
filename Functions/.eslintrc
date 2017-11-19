@@ -1,0 +1,12 @@
+{
+    "extends": "airbnb",
+    "rules": {
+      "no-param-reassign": "off",
+      "no-unused-expressions": "off",
+      "arrow-body-style": "off"
+    },
+    "env": {
+      "node": true,
+      "mocha": true
+    }
+}
