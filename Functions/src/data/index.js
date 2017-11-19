@@ -22,15 +22,16 @@ module.exports = function data(context, req) {
     const task = {
       PartitionKey: entGen.String('0'),
       RowKey: entGen.String(uuid()),
-      Timestamp: entGen.DateTime(moment.now()),
+      Timestamp: entGen.Int32(moment.now()),
       Message: entGen.String(JSON.stringify(req.body)),
     };
     // Insert the entity/document.
     tableService.insertEntity('sensordata', task, (error) => {
       if (!error) {
-        context.res = response(false, 200, 'Stored');
+        context.res = response(true, 200, 'Stored');
         context.done();
       } else {
+        context.log(error);
         context.res = response(false, 500, 'Failed to Store');
         context.done();
       }
