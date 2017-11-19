@@ -1,7 +1,8 @@
+const request = require('request');
 const azure = require('azure-storage');
 const uuid = require('uuid');
 const moment = require('moment');
-const { connectionString } = require('../../env');
+const { connectionString, socketServer } = require('../../env');
 const { response } = require('../common');
 // Generator for entities. See azure-storage docs.
 const entGen = azure.TableUtilities.entityGenerator;
@@ -28,8 +29,14 @@ module.exports = function data(context, req) {
     // Insert the entity/document.
     tableService.insertEntity('sensordata', task, (error) => {
       if (!error) {
-        context.res = response(true, 200, 'Stored');
-        context.done();
+        request({
+          url: socketServer,
+          method: 'POST',
+          json: req.body,
+        }, () => {
+          context.res = response(true, 200, 'Stored');
+          context.done();
+        });
       } else {
         context.log(error);
         context.res = response(false, 500, 'Failed to Store');
@@ -41,4 +48,3 @@ module.exports = function data(context, req) {
     context.done();
   }
 };
-
