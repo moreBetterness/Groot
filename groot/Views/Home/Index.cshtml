@@ -1,4 +1,4 @@
-﻿@*@model groot.Models.GrootDevice*@
+﻿@model groot.Models.Message
 <!doctype html>
 <!--
   Material Design Lite
@@ -119,7 +119,7 @@
                             </div>
                             <div class="mdl-card__menu">
                                 <div class="typo-styles__demo mdl-typography--headline">
-                                    Wet
+                                    @Model.eventName
                                 </div>
                             </div>
                         </div>
@@ -176,7 +176,9 @@
                             <tbody>
                                 <tr>
                                     <td class="mdl-data-table__cell--non-numeric">Nimble hamster</td>
-                                    <td>Wet</td>
+                                    <td>
+                                        @Model.eventName
+                                    </td>
                                     <td>65° F</td>
                                     <td>7</td>
                                     <td>7 g/mL</td>
@@ -198,7 +200,7 @@
                                     <tbody>
                                         <tr>
                                             <td>Moisture</td>
-                                            <td>Wet</td>
+                                            <td>@Model.eventName</td>
                                         </tr>
                                         <tr>
                                             <td>pH</td>
@@ -237,16 +239,8 @@
                     <div class="demo-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop">
                         <div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
                             <h3>Recommended Plants</h3>
-                            <ul>
-                                <li>
-                                    <span class="mdl-checkbox__label">Venus fly trap</span>
-                                </li>
-                                <li>
-                                    <span class="mdl-checkbox__label">Pitcher plant</span>
-                                </li>
-                                <li>
-                                    <span class="mdl-checkbox__label">Palm tree</span>
-                                </li>
+                            <input id="moistureLevel" type="hidden" value="@Model.eventName.First().ToString().ToUpper()@Model.eventName.Substring(1).ToLower()" />
+                            <ul id="recommendedPlants">
                             </ul>
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
@@ -262,5 +256,7 @@
     </div>
     <!-- / Layout Markup -->
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="../../Scripts/plantRecommendations.js"></script>
 </body>
 </html>

@@ -11,8 +11,9 @@ namespace groot.Controllers
     {
         public ActionResult Index()
         {
-            StorageTableDB.RetrieveEmployee();
-            return View();
+            //List<StorageTables> model = StorageTableDB.GetAllData();
+            Message model = StorageTableDB.GetData();
+            return View(model);
         }
 
         public ActionResult About()
