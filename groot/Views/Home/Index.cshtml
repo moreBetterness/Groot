@@ -1,4 +1,4 @@
-﻿@model groot.Models.Message
+@model groot.Models.Message
 <!doctype html>
 <!--
   Material Design Lite
@@ -119,7 +119,7 @@
                             </div>
                             <div class="mdl-card__menu">
                                 <div class="typo-styles__demo mdl-typography--headline">
-                                    @Model.eventName
+                                    <span id="moistureCardValue">@Model.eventName</span>
                                 </div>
                             </div>
                         </div>
@@ -174,15 +174,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">Nimble hamster</td>
-                                <td>
-                                    @Model.eventName
-                                </td>
-                                <td>65° F</td>
-                                <td>7</td>
-                                <td>7 g/mL</td>
-                            </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Nimble hamster</td>
+                                    <td>
+                                        <span id="moistureTableValue">@Model.eventName</span>
+                                    </td>
+                                    <td>65° F</td>
+                                    <td>7</td>
+                                    <td>7 g/mL</td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="mobile-table mdl-card mdl-cell mdl-cell--12-col telemetry-card mdl-shadow--2dp">
@@ -198,22 +198,22 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Moisture</td>
-                                        <td>@Model.eventName</td>
-                                    </tr>
-                                    <tr>
-                                        <td>pH</td>
-                                        <td>7 pH</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Salinity</td>
-                                        <td>7 g/mL</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Temperature</td>
-                                        <td>65° F</td>
-                                    </tr>
+                                        <tr>
+                                            <td>Moisture</td>
+                                            <td><span id="moistureMobileTableValue">@Model.eventName</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>pH</td>
+                                            <td>7 pH</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Salinity</td>
+                                            <td>7 g/mL</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Temperature</td>
+                                            <td>65° F</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -264,5 +264,7 @@
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="../../Scripts/plantRecommendations.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="../../Scripts/realtime.js"></script>
 </body>
 </html>
